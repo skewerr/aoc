@@ -1,5 +1,3 @@
-import System.IO
-import Control.Applicative
 import qualified Data.Set as Set
 
 validPhrase :: String -> Bool
