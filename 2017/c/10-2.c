@@ -53,7 +53,8 @@ readlengths(void)
 
 	for (i = 1; fgets(buf, sizeof buf, stdin) != NULL; ++i) {
 		lengths = realloc(lengths, i * sizeof buf);
-		strcat((char *) lengths, buf);
+		strncpy((char *) ((i > 1) ? (lengths + (i - 1) * sizeof buf - 1) :
+					lengths), buf, sizeof buf);
 	}
 
 	*(strchr((char *) lengths, '\n')) = '\0';
