@@ -68,9 +68,10 @@ xor16s(void)
 
 	for (i = 0; i < 16; ++i) {
 		xord = 0;
-		for (j = 0; j < 16; ++j) {
+
+		for (j = 0; j < 16; ++j)
 			xord ^= list[16 * i + j];
-		}
+
 		list[i] = xord;
 	}
 }
