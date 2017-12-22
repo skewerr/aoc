@@ -15,9 +15,6 @@ compMap = M.fromList [ ("nw", ("se", ( "s", "sw"), ("ne",  "n")))
                      , ("sw", ("ne", ( "n", "nw"), ("se",  "s")))
                      , ( "s", ( "n", ("ne", "se"), ("nw", "sw"))) ]
 
-count :: Eq a => a -> [a] -> Int
-count e = length . filter (== e)
-
 distance :: M.Map String Int -> Int
 distance = sum . M.delete "_max"
 
