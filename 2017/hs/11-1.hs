@@ -1,5 +1,4 @@
 import System.IO
-import Data.List.Split (splitOn)
 import qualified Data.Map.Strict as M
 
 directions :: [String]
@@ -14,6 +13,9 @@ compMap = M.fromList [ ("nw", ("se", ( "s", "sw"), ("ne",  "n")))
                      , ("se", ("nw", ( "n", "ne"), ("sw",  "s")))
                      , ("sw", ("ne", ( "n", "nw"), ("se",  "s")))
                      , ( "s", ( "n", ("ne", "se"), ("nw", "sw"))) ]
+
+replace :: Eq a => a -> a -> [a] -> [a]
+replace n r h = foldr (\e l -> if e == n then r:l else e:l) [] h
 
 distance :: M.Map String Int -> Int
 distance = sum
@@ -31,5 +33,6 @@ updateSteps k m
 
 main :: IO ()
 main = do
-    stepsMap <- foldl (flip updateSteps) startMap <$> splitOn "," <$> getLine
+    stepsList <- words . replace ',' ' ' <$> getLine
+    let stepsMap = foldl (flip updateSteps) startMap stepsList
     print $ distance stepsMap
