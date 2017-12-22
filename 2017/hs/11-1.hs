@@ -34,5 +34,5 @@ updateSteps k m
 main :: IO ()
 main = do
     stepsList <- words . replace ',' ' ' <$> getLine
-    let stepsMap = foldl (flip updateSteps) startMap stepsList
+    let stepsMap = foldr updateSteps startMap stepsList
     print $ distance stepsMap
